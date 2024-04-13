@@ -1,0 +1,11 @@
+{
+  "name": "algoritmo-grandulon",
+  "version": "1.0.0",
+  "description": "Creation of a Bully algoritm in node js into a network",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oliver",
+  "license": "ISC"
+}
