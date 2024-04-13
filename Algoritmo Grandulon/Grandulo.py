@@ -5,7 +5,7 @@ import threading
 def enviar_mensaje_a_todos(mensaje, puerto):
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
         for i in range(1, 255):
-            direccion = f"175.1.46.{i}"  # Cambia esto por la red que estés utilizando
+            direccion = f"175.1.46.{i}" 
             try:
                 sock.sendto(mensaje.encode(), (direccion, puerto))
             except OSError:
@@ -23,6 +23,8 @@ def escuchar_mensajes(puerto, identificador, gran_jefe):
                 gran_jefe[0] = recibido_identificador
                 identificador = recibido_identificador
                 print(f"Nodo con identificador {identificador} es el nuevo gran jefe.")
+            else:
+                print(f"Nodo con identificador {recibido_identificador} intentó ser el gran jefe, pero no superó a {identificador}.")
 
 # Función para obtener el identificador basado en la dirección IP
 def obtener_identificador():
@@ -36,6 +38,8 @@ def main():
     identificador = obtener_identificador()
     puerto = 5000
     gran_jefe = [identificador]
+
+    print(f"El identificador de este nodo es: {identificador}")
 
     # Iniciar hilo para escuchar mensajes
     thread_escucha = threading.Thread(target=escuchar_mensajes, args=(puerto, identificador, gran_jefe))
